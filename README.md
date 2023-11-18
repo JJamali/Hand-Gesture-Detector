@@ -1,9 +1,9 @@
 # Hand-Gesture-Detector
 
-Jordan Jamali
-Sam Zhu
-Rebecca Schuetze 
-Leek 
+Jordan Jamali, \n
+Sam Zhu, \n
+Rebecca Schuetze, \n
+and the amazing Leek 
 
 
 # Notes:
