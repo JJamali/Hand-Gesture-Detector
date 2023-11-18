@@ -5,3 +5,8 @@ Sam Zhu
 Rebecca Schuetze 
 Leek 
 
+
+# Notes:
+
+Use PySerial
+
