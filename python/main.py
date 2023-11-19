@@ -1,9 +1,8 @@
 import serial
 import tkinter as tk
-import statistics
-import time
-from datetime import datetime
-import math
+# import numpy as np
+# import matplotlib.pyplot as plt
+
 
 # set up fonts for pop up window stuff
 LARGE_FONT= ("Verdana", 12)
@@ -18,12 +17,12 @@ def popupmsg(msg, color):
     popup.wm_title("!")
     label = tk.Label(popup, text=msg, font=NORM_FONT)
     label.pack(side="top", fill="x", pady=10)
-    B1 = tk.Button(popup, text="Okay", command = popup.destroy)
+    B1 = tk.Button(popup, text="hhh", command = popup.destroy)
     B1.pack()
     popup.mainloop()
 
 # connect python to arduino serial readings
-ser = serial.Serial('COM3', 9600, timeout=1)
+ser = serial.Serial('/dev/cu.usbserial-140', 9600, timeout=1)
 #ser.baudrate = 9600
 #ser.port = 'COM3' # note: this changes with different environments
 #ser.open()
@@ -38,7 +37,6 @@ while True:
         print("unable to read line")
     
     # code to extract number from input data
-    # use try-except to omit any non-numerical data and prevent crashes
     extracted_num = ""
 
     for c in str(input):
@@ -51,7 +49,22 @@ while True:
     else:
         input = 0
         
-    print("cleaned input = " + str(input))
+    # print("cleaned input = " + str(input))
+
+    if input < 100:
+        print("finger lmao")
+    else:
+        print("i dont see anything haha")
 
     # do stuff with data
     
+out = [[]]
+
+
+def print_data(grid):
+
+    width, height = len(grid), len(grid[0])
+    for y in range(height):
+        print()
+        for x in range(width):
+            print(out[x][y], end="")
