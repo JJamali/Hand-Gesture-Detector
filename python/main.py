@@ -1,22 +1,6 @@
 import serial
-import tkinter as tk
+from useful_functions import popupmsg, plot_grid, determine_sign
 
-# set up fonts for pop up window stuff
-LARGE_FONT= ("Verdana", 12)
-NORM_FONT = ("Helvetica", 80)
-SMALL_FONT = ("Helvetica", 8)
-
-# takes in string msg, returns pop up window when called with msg
-# color dictates background color
-def popupmsg(msg, color):
-    popup = tk.Tk()
-    popup.configure(bg=color)
-    popup.wm_title("!")
-    label = tk.Label(popup, text=msg, font=NORM_FONT)
-    label.pack(side="top", fill="x", pady=10)
-    B1 = tk.Button(popup, text="hhh", command = popup.destroy)
-    B1.pack()
-    popup.mainloop()
 
 # connect python to arduino serial readings
 ser = serial.Serial('/dev/cu.usbserial-140', 9600, timeout=1)
@@ -41,7 +25,7 @@ while True:
     if extracted_num != "":
         input = int(extracted_num)
     else:
-        input = 0
+        input = 0  # this might introduce a bug, as the program will start with not seeing anything. prob ok tho
         
     # print("cleaned input = " + str(input))
 
@@ -52,8 +36,10 @@ while True:
 
     # do stuff with data
     
-grid = [[]]
+data = [[]]
 
-plot_grid(grid)
+plot_grid(data)
+
+popupmsg(determine_sign(data), "blue")
 
 
