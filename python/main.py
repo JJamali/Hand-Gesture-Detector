@@ -1,8 +1,5 @@
 import serial
 import tkinter as tk
-# import numpy as np
-# import matplotlib.pyplot as plt
-
 
 # set up fonts for pop up window stuff
 LARGE_FONT= ("Verdana", 12)
@@ -23,9 +20,6 @@ def popupmsg(msg, color):
 
 # connect python to arduino serial readings
 ser = serial.Serial('/dev/cu.usbserial-140', 9600, timeout=1)
-#ser.baudrate = 9600
-#ser.port = 'COM3' # note: this changes with different environments
-#ser.open()
 print(ser.name)
 
 # run indefinitely
@@ -58,13 +52,8 @@ while True:
 
     # do stuff with data
     
-out = [[]]
+grid = [[]]
+
+plot_grid(grid)
 
 
-def print_data(grid):
-
-    width, height = len(grid), len(grid[0])
-    for y in range(height):
-        print()
-        for x in range(width):
-            print(out[x][y], end="")
