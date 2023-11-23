@@ -6,6 +6,10 @@ from useful_functions import plot_grid, determine_sign
 ser = serial.Serial('/dev/cu.usbserial-140', 9600, timeout=1)
 print(ser.name)
 
+ROWS, COLS = 20, 20
+data = [[-1] * COLS] * ROWS
+x, y = 0, 0
+
 # run indefinitely
 while True:
 
@@ -29,17 +33,23 @@ while True:
         
     # print("cleaned input = " + str(input))
 
-    if input < 100:
-        print("finger lmao")
+    finger_detected = input < 100
+    print(finger_detected)
+
+    # populate grid
+    data[x][y] = finger_detected
+    if x == COLS:
+        x = 0
+        y += 1
     else:
-        print("i dont see anything haha")
+        x += 1
 
-    # do stuff with data
-    
-data = [[]]
+    if y == ROWS:
+        break
 
+# flip every other row
+for i in range(1, ROWS, 2):
+    data[i] = data[i][::-1]
+
+# do stuff with data
 plot_grid(data)
-
-popupmsg(determine_sign(data), "blue")
-
-
