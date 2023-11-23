@@ -1,44 +1,14 @@
 import matplotlib.pyplot as plt
-import tkinter as tk
-
-# takes in string msg, returns pop up window when called with msg
-# color dictates background color
-def popupmsg(msg, color): #TODO FIX THIS
-    # set up fonts for pop up window stuff
-    LARGE_FONT = ("Verdana", 12)
-    NORM_FONT = ("Helvetica", 80)
-    SMALL_FONT = ("Helvetica", 8)
-
-    popup = tk.Tk()
-    popup.configure(bg=color)
-    popup.wm_title("!")
-    label = tk.Label(popup, text=msg, font=NORM_FONT)
-    label.pack(side="top", fill="x", pady=10)
-    B1 = tk.Button(popup, text="Ok", command=popup.destroy)
-    B1.pack()
-    popup.mainloop()
 
 def plot_grid(data):
-    ### dummy data just to play with
-    # data = [[0, 0, 0, 0, 0, 1, 1, 1, 1, 0],
-    #  [0, 0, 0, 0, 0, 1, 0, 0, 1, 0],
-    #  [0, 0, 1, 0, 1, 0, 1, 1, 0, 0],
-    #  [0, 0, 1, 0, 0, 1, 1, 0, 1, 0],
-    #  [0, 0, 1, 0, 1, 0, 0, 1, 1, 0],
-    #  [1, 0, 0, 1, 0, 1, 0, 0, 1, 0],
-    #  [0, 1, 0, 0, 0, 1, 1, 1, 1, 1],
-    #  [0, 1, 0, 0, 0, 0, 1, 1, 1, 1],
-    #  [1, 0, 0, 0, 1, 1, 1, 0, 1, 0],
-    #  [1, 1, 1, 1, 0, 0, 0, 1, 1, 0]]
-
+    plt.title("I believe that this is " + determine_sign(data))
     plt.imshow(data)
     plt.show()
-
 
 def determine_sign(data):
 
     left_found = False
-    right_found = True
+    right_found = False
 
     # if we detect nothing on the 5th row, just return rock
     if not max(data[5]):
