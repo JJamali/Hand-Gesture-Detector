@@ -1,6 +1,6 @@
 #include <Stepper.h>
 
-const int stepsPerPixel = 20;  // change this to fit the number of steps per pixel
+const int stepsPerPixel = 73;  // change this to fit the number of steps per pixel
 
 // initialize the stepper library on pins 8 through 11. First one isn't PWM:
 Stepper hStepper(stepsPerPixel, 8, 9, 10, 11);
@@ -27,7 +27,8 @@ void setup() {
   pinMode(echoPin, INPUT);  
 
   // set the speed at 60 rpm:
-  hStepper.setSpeed(60);
+  hStepper.setSpeed(150);
+  vStepper.setSpeed(150);
   Serial.begin(9600);
 }  
 
