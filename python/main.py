@@ -6,7 +6,7 @@ from useful_functions import plot_grid, determine_sign
 ser = serial.Serial('/dev/cu.usbserial-140', 9600, timeout=1)
 print(ser.name)
 
-ROWS, COLS = 20, 20
+ROWS, COLS = 6, 10
 data = [[-1] * COLS] * ROWS
 x, y = 0, 0
 
