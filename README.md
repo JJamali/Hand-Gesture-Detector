@@ -9,7 +9,8 @@ Rebecca Schuetze,
 and the amazing Leek 
 
 
-# Notes:
+# Design philosophy:
 
-Use PySerial
+The python side of things isn't concerned with timing at all, it simply takes inputs when Arduino sends it and populates the grid accordingly. 
+
 
