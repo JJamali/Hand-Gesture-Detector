@@ -1,9 +1,11 @@
 import matplotlib.pyplot as plt
 
+
 def plot_grid(data):
     plt.title("I believe that this is " + determine_sign(data))
     plt.imshow(data)
     plt.show()
+
 
 def determine_sign(data):
 

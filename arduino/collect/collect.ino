@@ -1,8 +1,12 @@
-/*
- * Anything that gets printed is sent to python
- * 
- * 
- */
+#include <Stepper.h>
+
+const int stepsPerPixel = 20;  // change this to fit the number of steps per pixel
+
+// initialize the stepper library on pins 8 through 11. First one isn't PWM:
+Stepper hStepper(stepsPerPixel, 8, 9, 10, 11);
+// initialize the stepper library on pins 3 through 6. First one isn't PWM:
+Stepper vStepper(stepsPerPixel, 4, 3, 5, 6);
+
 
 const int sendPin = 9;  
 const int echoPin = 10; 
@@ -21,6 +25,9 @@ bool hDirection = 1;
 void setup() {  
   pinMode(sendPin, OUTPUT);  
   pinMode(echoPin, INPUT);  
+
+  // set the speed at 60 rpm:
+  hStepper.setSpeed(60);
   Serial.begin(9600);
 }  
 
@@ -46,10 +53,13 @@ void loop() {
 
 // direction of 0 is left, 1 is right
 void moveHorizontal(bool direction, int pixels){
-
-  // activate motor
-  // stop motor
+  if (!direction){
+    pixels *= -1;
+  }
   
+  // activate motor
+  hStepper.step(stepsPerPixel * pixels);
+  delay(500);  
   
   // increment/decrement x based on direction
   if (direction){
@@ -62,9 +72,14 @@ void moveHorizontal(bool direction, int pixels){
 
 // direction of 0 is up, 1 is down
 void moveVertical(bool direction, int pixels){
-  // activate motor
-  // stop motor
+
+  if (!direction){
+    pixels *= -1;
+  }
   
+  // activate motor
+  vStepper.step(stepsPerPixel * pixels);
+  delay(500);  
   y++;
 }
 
