@@ -12,56 +12,60 @@ const int verticalMotorPin = 2;
 
 float duration, distance;
 
+int ROWS = 6;
+int COLS = 10;
+int x = 0;
+int y = 0;
+bool hDirection = 1;
+
 void setup() {  
   pinMode(sendPin, OUTPUT);  
   pinMode(echoPin, INPUT);  
   Serial.begin(9600);
-
-  int ROWS = 6;
-  int COLS = 10;
-  int x = 0;
-  int y = 0;
-  bool hDirection = 1;
 }  
 
 void loop() {
   //take photo, then move
-  
   readValue();
   moveHorizontal(hDirection, 1);
 
-  if (x+1 == ROWS and y+1 == COLS){ //TODO fix this as end point could be at y = 0 instead of y = COLS - 1
-    // if end of scan reached
+  if (y+1 == COLS and (ROWS % 2 == 0 and x == 0 or ROWS % 2 == 1 and x == COLS - 1)){
+    // we check if its odd or even to determine ending location
+    // end scan - reset sensor
     moveHorizontal(0, ROWS);
     moveVertical(0, COLS);
     exit(0); // end program
   }
-  elif (x+1 == ROWS && hDirection || x == 0 && !hDirection){
+  else if (x+1 == ROWS && hDirection || x == 0 && !hDirection){
     // if we've reached an edge of our grid, change direction and increment y
     hDirection = !hDirection;
     moveVertical(1, 1);
-    y++
+    y++;
   }
 }
 
 // direction of 0 is left, 1 is right
-void moveHorizontal(direction, pixels){
+void moveHorizontal(bool direction, int pixels){
 
   // activate motor
+  // stop motor
+  
   
   // increment/decrement x based on direction
   if (direction){
-    x++
+    x++;
   }
   else {
-    x--
+    x--;
   }
 }
 
 // direction of 0 is up, 1 is down
-void moveVertical(direction, pixels){
+void moveVertical(bool direction, int pixels){
   // activate motor
-  y++
+  // stop motor
+  
+  y++;
 }
 
 int readValue() {
