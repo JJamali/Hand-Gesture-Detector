@@ -1,18 +1,12 @@
-#include <Stepper.h>
+#include <TinyStepper.h>
 
-const int stepsPerPixel = 73;  // change this to fit the number of steps per pixel
+const int stepsPerPixel = 169;  // change this to fit the number of steps per pixel
 
-// initialize the stepper library on pins 8 through 11. First one isn't PWM:
-Stepper hStepper(stepsPerPixel, 8, 9, 10, 11);
-// initialize the stepper library on pins 3 through 6. First one isn't PWM:
-Stepper vStepper(stepsPerPixel, 4, 3, 5, 6);
-
+TinyStepper hStepper(4096, 8, 9, 10, 11);
+TinyStepper vStepper(4096, 4, 3, 5, 6);
 
 const int sendPin = 9;  
 const int echoPin = 10; 
-
-const int horizontalMotorPin = 1;
-const int verticalMotorPin = 2;
 
 float duration, distance;
 
@@ -26,9 +20,8 @@ void setup() {
   pinMode(sendPin, OUTPUT);  
   pinMode(echoPin, INPUT);  
 
-  // set the speed at 60 rpm:
-  hStepper.setSpeed(150);
-  vStepper.setSpeed(150);
+  hStepper.Enable();
+  vStepper.Enable();
   Serial.begin(9600);
 }  
 
@@ -37,14 +30,14 @@ void loop() {
   readValue();
   moveHorizontal(hDirection, 1);
 
-  if (y+1 == COLS and (ROWS % 2 == 0 and x == 0 or ROWS % 2 == 1 and x == COLS - 1)){
+  if (y == COLS and (ROWS % 2 == 0 and x == 0 or ROWS % 2 == 1 and x == COLS - 1)){
     // we check if its odd or even to determine ending location
     // end scan - reset sensor
     moveHorizontal(0, ROWS);
     moveVertical(0, COLS);
     exit(0); // end program
   }
-  else if (x+1 == ROWS && hDirection || x == 0 && !hDirection){
+  else if (x == ROWS && hDirection || x == 0 && !hDirection){
     // if we've reached an edge of our grid, change direction and increment y
     hDirection = !hDirection;
     moveVertical(1, 1);
@@ -59,7 +52,7 @@ void moveHorizontal(bool direction, int pixels){
   }
   
   // activate motor
-  hStepper.step(stepsPerPixel * pixels);
+  hStepper.Move(stepsPerPixel * pixels);
   delay(500);  
   
   // increment/decrement x based on direction
@@ -79,7 +72,7 @@ void moveVertical(bool direction, int pixels){
   }
   
   // activate motor
-  vStepper.step(stepsPerPixel * pixels);
+  vStepper.Move(stepsPerPixel * pixels);
   delay(500);  
   y++;
 }
