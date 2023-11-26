@@ -2,8 +2,8 @@
 
 const int stepsPerPixel = 169;  // change this to fit the number of steps per pixel
 
-TinyStepper hStepper(4096, 8, 9, 10, 11);
-TinyStepper vStepper(4096, 4, 3, 5, 6);
+TinyStepper vStepper(4096, 8, 9, 10, 11);
+TinyStepper hStepper(4096, 4, 3, 5, 6);
 
 const int sendPin = 9;  
 const int echoPin = 10; 

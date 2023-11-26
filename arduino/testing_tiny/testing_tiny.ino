@@ -35,7 +35,7 @@ void loop() {
   hStepper.Move(45);
   hStepper.Move(-90);
   hStepper.Move(120);
-  hStepper.Move(-15);
+  hStepper.Move(-15); 
   hStepper.Move(30);
   delay(2000);
 }
