@@ -12,6 +12,9 @@ x, y = 0, 0
 
 # run indefinitely
 while True:
+    # if we've populated all the data, exit the while loop
+    if y == ROWS:
+        break
 
     try:
         input = ser.readline()
@@ -44,8 +47,6 @@ while True:
     else:
         x += 1
 
-    if y == ROWS:
-        break
 
 # flip every other row
 for i in range(1, ROWS, 2):
