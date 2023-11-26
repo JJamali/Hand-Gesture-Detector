@@ -1,5 +1,5 @@
 import serial
-from useful_functions import plot_grid, determine_sign
+from useful_functions import plot_grid
 
 
 # connect python to arduino serial readings
