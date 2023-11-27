@@ -4,10 +4,9 @@ from useful_functions import plot_grid
 
 # connect python to arduino serial readings
 ser = serial.Serial('/dev/cu.usbserial-113240', 9600, timeout=1)
-print(ser.name)
 
 ROWS, COLS = 6, 10
-data = [[-1] * COLS] * ROWS
+data = [[-1 for _ in range(COLS)] for _ in range(ROWS)]
 x, y = 0, 0
 
 print(data)
@@ -17,7 +16,8 @@ while True:
 
     try:
         input = ser.readline()
-        # print(input)
+        print("input")
+        print(input)
         print(input.decode("utf-8"))
     except Exception:
         # print("unable to read line")
@@ -46,13 +46,13 @@ while True:
     # populate grid
     print(x, y)
     data[y][x] = finger_detected
-    # print(data)
+    print(data)
     if x == COLS - 1:
         x = 0
         y += 1
     else:
         x += 1
-    print(data)
+
 
 print(data)
 

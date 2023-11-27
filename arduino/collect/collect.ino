@@ -29,6 +29,8 @@ void setup() {
 void loop() {
   //take photo, then move
   readValue();
+  Serial.print(x);
+  Serial.print(y);
   moveHorizontal(hDirection, 1);
 
   if (y == COLS and (ROWS % 2 == 0 and x == 0 or ROWS % 2 == 1 and x == COLS - 1)){
