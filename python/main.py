@@ -3,7 +3,7 @@ from useful_functions import plot_grid
 
 
 # connect python to arduino serial readings
-ser = serial.Serial('/dev/cu.usbserial-113240', 9600, timeout=1)
+ser = serial.Serial('/dev/cu.usbserial-110', 9600, timeout=1)
 
 ROWS, COLS = 6, 10
 data = [[-1 for _ in range(COLS)] for _ in range(ROWS)]

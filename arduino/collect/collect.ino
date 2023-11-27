@@ -19,13 +19,14 @@ int y = 0;
 bool hDirection = 1;
 
 void setup() {  
+  delay(10000);
   pinMode(sendPin, OUTPUT);  
   pinMode(echoPin, INPUT);  
 
   hStepper.Enable();
   vStepper.Enable();
   Serial.begin(9600);
-  delay(10000);
+  
 }  
 
 void loop() {
