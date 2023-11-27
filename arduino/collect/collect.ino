@@ -3,15 +3,15 @@
 const int stepsPerPixel = 169;  // change this to fit the number of steps per pixel
 
 TinyStepper vStepper(4096, 8, 9, 10, 11);
-TinyStepper hStepper(4096, 4, 3, 5, 6);
+TinyStepper hStepper(4096, 4, 5, 3, 6);
 
-const int sendPin = 9;  
-const int echoPin = 10; 
+const int sendPin = 7;  
+const int echoPin = 2; 
 
 float duration, distance;
 
-int ROWS = 6;
-int COLS = 10;
+int ROWS = 6; //6
+int COLS = 10; //10
 int x = 0;
 int y = 0;
 bool hDirection = 1;
@@ -23,6 +23,7 @@ void setup() {
   hStepper.Enable();
   vStepper.Enable();
   Serial.begin(9600);
+  delay(10000);
 }  
 
 void loop() {
@@ -33,8 +34,9 @@ void loop() {
   if (y == COLS and (ROWS % 2 == 0 and x == 0 or ROWS % 2 == 1 and x == COLS - 1)){
     // we check if its odd or even to determine ending location
     // end scan - reset sensor
-    moveHorizontal(0, ROWS);
-    moveVertical(0, COLS);
+//    moveHorizontal(!hDirection, COLS);
+    moveVertical(0, ROWS - 1);
+    Serial.println("done");
     exit(0); // end program
   }
   else if (x == ROWS && hDirection || x == 0 && !hDirection){
