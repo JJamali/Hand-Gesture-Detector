@@ -26,6 +26,11 @@ while True:
     if input.decode("utf-8") == "do":
         print("BREAK")
         break
+    if input.decode("utf-8") == "nr\r\n":
+        print("new row")
+        print(x, y)
+        x = 0
+        y += 1
 
     extracted_num = ""
 
@@ -47,12 +52,12 @@ while True:
     print(x, y)
     data[y][x] = finger_detected
     print(data)
-    if x == COLS - 1:
-        x = 0
-        y += 1
-    else:
-        x += 1
-
+    # if x == COLS - 1:
+    #     x = 0
+    #     y += 1
+    # else:
+    #     x += 1
+    x += 1
 
 print(data)
 

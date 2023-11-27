@@ -1,6 +1,8 @@
 #include <TinyStepper.h>
 
 const int stepsPerPixel = 169;  // change this to fit the number of steps per pixel
+const int stepsPerPixelH = 101;
+
 
 TinyStepper vStepper(4096, 8, 9, 10, 11);
 TinyStepper hStepper(4096, 4, 5, 3, 6);
@@ -29,8 +31,6 @@ void setup() {
 void loop() {
   //take photo, then move
   readValue();
-  Serial.print(x);
-  Serial.print(y);
   moveHorizontal(hDirection, 1);
 
   if (y == COLS and (ROWS % 2 == 0 and x == 0 or ROWS % 2 == 1 and x == COLS - 1)){
@@ -41,10 +41,11 @@ void loop() {
     Serial.println("done");
     exit(0); // end program
   }
-  else if (x == ROWS && hDirection || x == 0 && !hDirection){
+  else if (hDirection && x == COLS || !hDirection && x == 0){ //changed first x from ROWS
     // if we've reached an edge of our grid, change direction and increment y
     hDirection = !hDirection;
     moveVertical(1, 1);
+    Serial.println("nr");
     y++;
   }
 }
@@ -56,7 +57,7 @@ void moveHorizontal(bool direction, int pixels){
   }
   
   // activate motor
-  hStepper.Move(stepsPerPixel * pixels);
+  hStepper.Move(stepsPerPixelH * pixels);
   delay(500);  
   
   // increment/decrement x based on direction
