@@ -3,9 +3,9 @@ from useful_functions import plot_grid
 
 
 # connect python to arduino serial readings
-ser = serial.Serial('/dev/cu.usbserial-1110', 9600, timeout=1)
+ser = serial.Serial('COM6', 9600, timeout=1)
 
-ROWS, COLS = 12, 14
+ROWS, COLS = 20, 20
 data = [[-1 for _ in range(COLS)] for _ in range(ROWS)]
 x, y = 0, 0
 
@@ -45,8 +45,8 @@ while True:
         continue
         
     print("extracted input " + str(input))
-    finger_detected = input < 100
-    print(finger_detected)
+    finger_detected = input < 8
+    print(input)
 
     # populate grid
     print(x, y)

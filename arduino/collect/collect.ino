@@ -1,27 +1,27 @@
 #include <TinyStepper.h>
 
 //6 and 10
-const int stepsPerPixel = 100;  // change this to fit the number of steps per pixel 169
-const int stepsPerPixelH = 80;
+const int stepsPerPixel = 60;  // change this to fit the number of steps per pixel 169
+const int stepsPerPixelH = 60;
 
 TinyStepper vStepper(4096, 8, 9, 10, 11);
-TinyStepper hStepper(4096, 4, 5, 3, 6);
+TinyStepper hStepper(4096, 4, 5, 2, 6);
 
-const int sendPin = 7;  
-const int echoPin = 2; 
+const int sendPin = 7;
+const int echoPin = 3; 
 
 float duration, distance;
 
-int ROWS = 12; //6
-int COLS = 14; //10
+int ROWS = 20; //6
+int COLS = 20; //10
 int x = 0;
 int y = 0;
 bool hDirection = 1;
 
-void setup() {  
+void setup() {
   delay(10000);
-  pinMode(sendPin, OUTPUT);  
-  pinMode(echoPin, INPUT);  
+  pinMode(sendPin, OUTPUT);
+  pinMode(echoPin, INPUT);
 
   hStepper.Enable();
   vStepper.Enable();
@@ -61,7 +61,7 @@ void moveHorizontal(bool direction, int pixels){
   
   // activate motor
   hStepper.Move(stepsPerPixelH * pixels);
-  delay(500);  
+  delay(50);  
   
   // increment/decrement x based on direction
   if (direction){
@@ -81,7 +81,7 @@ void moveVertical(bool direction, int pixels){
   
   // activate motor
   vStepper.Move(stepsPerPixel * pixels);
-  delay(500);  
+  delay(50);  
   y++;
 }
 
