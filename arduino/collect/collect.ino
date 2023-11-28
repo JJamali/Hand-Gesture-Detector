@@ -1,7 +1,7 @@
 #include <TinyStepper.h>
 
 //6 and 10
-const int stepsPerPixel = 105;  // change this to fit the number of steps per pixel 169
+const int stepsPerPixel = 100;  // change this to fit the number of steps per pixel 169
 const int stepsPerPixelH = 80;
 
 TinyStepper vStepper(4096, 8, 9, 10, 11);
