@@ -1,8 +1,8 @@
 #include <TinyStepper.h>
 
-const int stepsPerPixel = 169;  // change this to fit the number of steps per pixel
-const int stepsPerPixelH = 101;
-
+//6 and 10
+const int stepsPerPixel = 105;  // change this to fit the number of steps per pixel 169
+const int stepsPerPixelH = 80;
 
 TinyStepper vStepper(4096, 8, 9, 10, 11);
 TinyStepper hStepper(4096, 4, 5, 3, 6);
@@ -12,8 +12,8 @@ const int echoPin = 2;
 
 float duration, distance;
 
-int ROWS = 6; //6
-int COLS = 10; //10
+int ROWS = 12; //6
+int COLS = 14; //10
 int x = 0;
 int y = 0;
 bool hDirection = 1;
@@ -33,8 +33,11 @@ void loop() {
   //take photo, then move
   readValue();
   moveHorizontal(hDirection, 1);
+  // code with assumption of even rows
 
-  if (y == COLS and (ROWS % 2 == 0 and x == 0 or ROWS % 2 == 1 and x == COLS - 1)){
+//  if (y == COLS and (ROWS % 2 == 0 and x == 0 or ROWS % 2 == 1 and x == COLS - 1)
+
+  if (y == ROWS){
     // we check if its odd or even to determine ending location
     // end scan - reset sensor
 //    moveHorizontal(!hDirection, COLS);
@@ -47,7 +50,6 @@ void loop() {
     hDirection = !hDirection;
     moveVertical(1, 1);
     Serial.println("nr");
-    y++;
   }
 }
 
@@ -98,4 +100,5 @@ int readValue() {
   // 0.0343 is the speed sound travels in centimeters per microsecond
   distance = (duration*.0343)/2; 
   Serial.println(distance);
+  delay(50);
 }
