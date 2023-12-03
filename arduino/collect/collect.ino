@@ -1,7 +1,6 @@
 #include <TinyStepper.h>
 
-//6 and 10
-const int stepsPerPixel = 60;  // change this to fit the number of steps per pixel 169
+const int stepsPerPixel = 60;
 const int stepsPerPixelH = 60;
 
 TinyStepper vStepper(4096, 8, 9, 10, 11);
@@ -12,8 +11,8 @@ const int echoPin = 3;
 
 float duration, distance;
 
-int ROWS = 20; //6
-int COLS = 20; //10
+int ROWS = 20;
+int COLS = 20;
 int x = 0;
 int y = 0;
 bool hDirection = 1;
@@ -35,17 +34,14 @@ void loop() {
   moveHorizontal(hDirection, 1);
   // code with assumption of even rows
 
-//  if (y == COLS and (ROWS % 2 == 0 and x == 0 or ROWS % 2 == 1 and x == COLS - 1)
-
   if (y == ROWS){
     // we check if its odd or even to determine ending location
     // end scan - reset sensor
-//    moveHorizontal(!hDirection, COLS);
     moveVertical(0, ROWS - 1);
     Serial.println("done");
     exit(0); // end program
   }
-  else if (hDirection && x == COLS || !hDirection && x == 0){ //changed first x from ROWS
+  else if (hDirection && x == COLS || !hDirection && x == 0){
     // if we've reached an edge of our grid, change direction and increment y
     hDirection = !hDirection;
     moveVertical(1, 1);
