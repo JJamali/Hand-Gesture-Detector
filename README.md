@@ -1,6 +1,6 @@
 # Hand-Gesture-Detector
 
-A system that scans things using an ultrasonic sensor.
+A system that scans things using an ultrasonic sensor. Below is a paper symbol from rock paper scissors.
 
 <img width="415" alt="image" src="https://github.com/JJamali/Hand-Gesture-Detector/assets/31671594/7f6649c3-bcc8-4024-979d-1d99d6f6a172">
 
